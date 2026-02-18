@@ -35,7 +35,7 @@ Crie o arquivo `local.settings.json` na raiz do projeto:
     "SERVICEBUS_CONNECTION": "<service-bus-connection-string>"
   },
   "FunctionOptions": {
-    "BaseUrl": "https://fcg-apigtw.azure-api.net/payments-api",
+    "BaseUrl": "https://fcg-apim-pos.azure-api.net/payments",
     "ApimSubscriptionKey": "<apim-subscription-key>"
   }
 }
