@@ -39,13 +39,16 @@ jobs:
           zip -r ../app.zip .
           cd ..
 
-      - name: Deploy via Kudu ZipDeploy (no api/settings)
+      - name: Deploy via Kudu ZipDeploy
         shell: bash
+        env:
+          KUDU_HOST: fcg-func-f9ejceesh9bzgse6.scm.eastus-01.azurewebsites.net
         run: |
           set -e
-          KUDU_URL="https://${{ env.AZURE_FUNCTIONAPP_NAME }}.scm.azurewebsites.net"
-          echo "Deploying to: ${KUDU_URL}"
+          KUDU_URL="https://${KUDU_HOST}"
+          echo "Deploying to: ${KUDU_URL}/api/zipdeploy"
           curl -sS -u "${{ secrets.KUDU_USERNAME }}:${{ secrets.KUDU_PASSWORD }}" \
             -X POST "${KUDU_URL}/api/zipdeploy" \
             --data-binary "@app.zip" \
             -H "Content-Type: application/zip"
+
